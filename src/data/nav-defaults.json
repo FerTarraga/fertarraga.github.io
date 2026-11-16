@@ -1,22 +1,38 @@
 [
   {
     "label": "Inicio",
-    "href": "/"
+    "href": "/",
+    "label_en": "Home",
+    "href_en": "/en/"
   },
   {
     "label": "Sobre mí",
-    "href": "/sobre-mi/"
+    "href": "/sobre-mi/",
+    "label_en": "About",
+    "href_en": "/en/about/"
   },
   {
     "label": "Portafolio",
-    "href": "/portafolio/"
+    "href": "/portafolio/",
+    "label_en": "Portfolio",
+    "href_en": "/en/portfolio/"
+  },
+  {
+    "label": "Eventos",
+    "href": "/eventos/",
+    "label_en": "Events (ES)",
+    "href_en": "/eventos/"
   },
   {
     "label": "Blog",
-    "href": "/blog/"
+    "href": "/blog/",
+    "label_en": "Blog (ES)",
+    "href_en": "/blog/"
   },
   {
     "label": "Contáctame",
-    "href": "/contacto/"
+    "href": "/contacto/",
+    "label_en": "Contact",
+    "href_en": "/en/contact/"
   }
 ]

@@ -1,13 +1,30 @@
 {
   "tagline": "Analista Funcional de Sistemas | Data Analyst",
-  "networks": {
-    "x": "",
-    "instagram": "",
-    "linkedin": "https://www.linkedin.com/in/iristarraga/",
-    "github": ""
-  },
+  "networks": [
+    {
+      "key": "x",
+      "url": "",
+      "show": true
+    },
+    {
+      "key": "instagram",
+      "url": "",
+      "show": true
+    },
+    {
+      "key": "linkedin",
+      "url": "https://www.linkedin.com/in/iristarraga/",
+      "show": true
+    },
+    {
+      "key": "github",
+      "url": "",
+      "show": true
+    }
+  ],
   "sections": {
     "eventos": true,
     "recursos": false
-  }
+  },
+  "tagline_en": "Functional Systems Analyst | Data Analyst"
 }

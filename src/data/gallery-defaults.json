@@ -3,7 +3,8 @@
     "slot": "mosaico-1",
     "image_url": "/assets/fernanda-portada.webp",
     "alt": "Fernanda Tárraga con blazer azul sentada junto a un cuaderno",
-    "caption": ""
+    "caption": "",
+    "alt_en": "Fernanda Tárraga in a blue blazer sitting next to a notebook"
   },
   {
     "slot": "mosaico-2",
@@ -21,60 +22,70 @@
     "slot": "trayectoria-1",
     "image_url": "",
     "alt": "",
-    "caption": "Analista de Datos | Data Quality Analyst · Interaxios · 2024-2025"
+    "caption": "Analista de Datos | Data Quality Analyst · Interaxios · 2024-2025",
+    "caption_en": "Data Analyst | Data Quality Analyst · Interaxios · 2024-2025"
   },
   {
     "slot": "trayectoria-2",
     "image_url": "",
     "alt": "",
-    "caption": "Desarrollo Web · Codo a Codo 4.0 · fecha por confirmar"
+    "caption": "Desarrollo Web · Codo a Codo 4.0 · fecha por confirmar",
+    "caption_en": "Web Development · Codo a Codo 4.0 · date to be confirmed"
   },
   {
     "slot": "trayectoria-3",
     "image_url": "",
     "alt": "",
-    "caption": "Curso de Scrum Master a distancia · UTN · fecha por confirmar"
+    "caption": "Curso de Scrum Master a distancia · UTN · fecha por confirmar",
+    "caption_en": "Distance Scrum Master course · UTN · date to be confirmed"
   },
   {
     "slot": "trayectoria-4",
     "image_url": "",
     "alt": "",
-    "caption": "Web app de calendario y turnos · GM Nails · fecha por confirmar"
+    "caption": "Web app de calendario y turnos · GM Nails · fecha por confirmar",
+    "caption_en": "Calendar and appointments web app · GM Nails · date to be confirmed"
   },
   {
     "slot": "trayectoria-5",
     "image_url": "",
     "alt": "",
-    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+    "caption": "Evento o taller · tema, institución y fecha por confirmar",
+    "caption_en": "Event or workshop · topic, institution and date to be confirmed"
   },
   {
     "slot": "trayectoria-6",
     "image_url": "",
     "alt": "",
-    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+    "caption": "Evento o taller · tema, institución y fecha por confirmar",
+    "caption_en": "Event or workshop · topic, institution and date to be confirmed"
   },
   {
     "slot": "trayectoria-7",
     "image_url": "",
     "alt": "",
-    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+    "caption": "Evento o taller · tema, institución y fecha por confirmar",
+    "caption_en": "Event or workshop · topic, institution and date to be confirmed"
   },
   {
     "slot": "trayectoria-8",
     "image_url": "",
     "alt": "",
-    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+    "caption": "Evento o taller · tema, institución y fecha por confirmar",
+    "caption_en": "Event or workshop · topic, institution and date to be confirmed"
   },
   {
     "slot": "trayectoria-9",
     "image_url": "",
     "alt": "",
-    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+    "caption": "Evento o taller · tema, institución y fecha por confirmar",
+    "caption_en": "Event or workshop · topic, institution and date to be confirmed"
   },
   {
     "slot": "trayectoria-10",
     "image_url": "",
     "alt": "",
-    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+    "caption": "Evento o taller · tema, institución y fecha por confirmar",
+    "caption_en": "Event or workshop · topic, institution and date to be confirmed"
   }
 ]

@@ -4,20 +4,29 @@
     "title": "Interaxios",
     "summary": "calidad de datos de pólizas y facturación en seguros",
     "category": "Calidad de datos",
-    "position": 1
+    "position": 1,
+    "title_en": "Interaxios",
+    "summary_en": "policy and billing data quality in insurance",
+    "category_en": "Data quality"
   },
   {
     "slug": "gm-nails",
     "title": "GM Nails",
     "summary": "web app de calendario y gestión de turnos",
     "category": "Desarrollo web",
-    "position": 2
+    "position": 2,
+    "title_en": "GM Nails",
+    "summary_en": "calendar and appointment management web app",
+    "category_en": "Web development"
   },
   {
     "slug": "chequeos",
     "title": "Tres chequeos antes de analizar datos",
     "summary": "",
     "category": "Recursos",
-    "position": 3
+    "position": 3,
+    "title_en": "Three checks before analyzing data",
+    "summary_en": "",
+    "category_en": "Resources"
   }
 ]

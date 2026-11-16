@@ -3,16 +3,11 @@
 // - Sin endpoint: no envía; copia el mensaje al portapapeles para pegarlo en LinkedIn.
 (function () {
   var cfg = window.PT_CONFIG || {};
-  var messages = {
-    name: 'Escribí tu nombre.',
-    email: 'Escribí un correo electrónico válido.',
-    subject: 'Escribí el asunto.',
-    message: 'Escribí tu mensaje.'
+  var MESSAGES = {
+    es: { name: 'Escribí tu nombre.', email: 'Escribí un correo electrónico válido.', subject: 'Escribí el asunto.', message: 'Escribí tu mensaje.', captcha: tr().captcha, sending: 'Enviando…', copied: tr().copied, manual: tr().manual },
+    en: { name: 'Please enter your name.', email: 'Please enter a valid email address.', subject: 'Please enter a subject.', message: 'Please enter your message.', captcha: 'Please tick “I’m not a robot”.', sending: 'Sending…', copied: 'Message copied to the clipboard. Paste it on LinkedIn so it reaches me.', manual: 'Could not copy automatically. Select and copy the message.' }
   };
-
-  if (cfg.formspreeEndpoint) {
-    document.querySelectorAll('[data-no-endpoint]').forEach(function (n) { n.remove(); });
-  }
+  function tr() { return MESSAGES[document.documentElement.lang === 'en' ? 'en' : 'es']; }
 
   if (cfg.recaptchaSiteKey && cfg.formspreeEndpoint) {
     var s = document.createElement('script');
@@ -34,7 +29,7 @@
       var err = document.getElementById(el.id + '-err');
       var ok = el.value.trim() !== '' && el.checkValidity();
       el.setAttribute('aria-invalid', ok ? 'false' : 'true');
-      if (err) err.textContent = ok ? '' : (messages[el.name] || 'Completá este campo.');
+      if (err) err.textContent = ok ? '' : (tr()[el.name] || '—');
       if (!ok && !first) first = el;
     });
     var cerr = form.querySelector('[data-captcha-err]');
@@ -42,7 +37,7 @@
     if (cerr && field && !field.hidden) {
       var token = form.querySelector('[name="g-recaptcha-response"]');
       var solved = !!(token && token.value);
-      cerr.textContent = solved ? '' : 'Marcá la casilla «No soy un robot».';
+      cerr.textContent = solved ? '' : tr().captcha;
       if (!solved && !first) first = cerr;
     }
     if (first && first.focus) first.focus();
@@ -63,7 +58,7 @@
       if (cfg.formspreeEndpoint) {
         form.action = cfg.formspreeEndpoint;
         form.method = 'post';
-        status.textContent = 'Enviando…';
+        status.textContent = tr().sending;
         form.submit();
         return;
       }
@@ -75,11 +70,11 @@
         preview.value = text;
         preview.focus();
         preview.select();
-        status.textContent = 'No se pudo copiar automáticamente. Seleccioná y copiá el mensaje.';
+        status.textContent = tr().manual;
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function () {
-          status.textContent = 'Mensaje copiado al portapapeles. Pegalo en LinkedIn para que me llegue.';
+          status.textContent = tr().copied;
         }, fallback);
       } else {
         fallback();

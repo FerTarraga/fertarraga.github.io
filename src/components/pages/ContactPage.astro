@@ -1,0 +1,36 @@
+---
+// Contacto de Fernanda en español o inglés.
+import Base from '../../layouts/Base.astro';
+import ContactForm from '../ContactForm.astro';
+import SocialLinks from '../SocialLinks.astro';
+import { c } from '../../lib/content';
+
+interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
+const en = lang === 'en';
+const L = (es: string, enText: string) => (en ? enText : es);
+const t = (k: string) => c('contacto', k, lang);
+const [pageTitle, intro, formTitle] = await Promise.all(['page_title', 'intro', 'form_title'].map(t));
+---
+<Base
+  title={L('Contáctame | Fernanda Tárraga', 'Contact | Fernanda Tárraga')}
+  description={L('Contacto de Fernanda Tárraga.', 'Contact Fernanda Tárraga.')}
+  current="contacto"
+  lang={lang}
+  form
+>
+  <h1 class="pt-page-title">{pageTitle}</h1>
+  <div class="pt-contact-intro">
+    <p>{intro}</p>
+  </div>
+  <div class="pt-contact">
+    <div class="pt-contact-photo">
+      <img src="/assets/fernanda-portada.webp" width="1440" height="960" alt={L('Fernanda Tárraga con blazer azul', 'Fernanda Tárraga in a blue blazer')} style="object-position: 72% center" loading="lazy" />
+    </div>
+    <div>
+      <h2>{formTitle}</h2>
+      <ContactForm id="contacto" lang={lang} />
+      <nav class="pt-social pt-social-inline" aria-label={L('Redes sociales', 'Social networks')}><SocialLinks lang={lang} /></nav>
+    </div>
+  </div>
+</Base>

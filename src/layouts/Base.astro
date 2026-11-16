@@ -4,22 +4,25 @@ import '../styles/portal.css';
 import SocialLinks from '../components/SocialLinks.astro';
 import { SITE } from '../data/site';
 import { getNavItems, getSettings } from '../lib/portal-data';
+import { altPath, type Lang } from '../data/routes';
 
 interface Props {
   title: string;
   description?: string;
   current?: string;
   form?: boolean;
+  lang?: Lang;
   noindex?: boolean;
 }
-const menuItems = await getNavItems();
-const settings = await getSettings();
+const { lang = 'es' } = Astro.props;
+const menuItems = await getNavItems(lang);
+const settings = await getSettings(lang);
 const path = Astro.url.pathname;
 const isHere = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 const { title, description = SITE.tagline, current, form = false, noindex = true } = Astro.props;
 ---
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,13 +39,18 @@ const { title, description = SITE.tagline, current, form = false, noindex = true
     <p class="pt-title"><a href="/">{SITE.name}</a></p>
     <p class="pt-tagline">{settings.tagline}</p>
     <nav class="pt-nav" aria-label="Principal">
-      <input class="pt-toggle" type="checkbox" id="pt-menu-toggle" aria-label="Abrir o cerrar el menú" />
-      <label class="pt-menu-button" for="pt-menu-toggle">Menú <span class="pt-plus" aria-hidden="true">+</span><span class="pt-x" aria-hidden="true">×</span></label>
+      <input class="pt-toggle" type="checkbox" id="pt-menu-toggle" aria-label={lang === 'en' ? 'Open or close the menu' : 'Abrir o cerrar el menú'} />
+      <label class="pt-menu-button" for="pt-menu-toggle">{lang === 'en' ? 'Menu' : 'Menú'} <span class="pt-plus" aria-hidden="true">+</span><span class="pt-x" aria-hidden="true">×</span></label>
       <ul class="pt-menu">
         {menuItems.map((i) => <li><a href={i.href} aria-current={isHere(i.href) ? 'page' : undefined}>{i.label}</a></li>)}
       </ul>
     </nav>
-    <nav class="pt-social" aria-label="Redes sociales"><SocialLinks /></nav>
+    <nav class="pt-social" aria-label={lang === 'en' ? 'Social networks' : 'Redes sociales'}><SocialLinks lang={lang} /></nav>
+    <nav class="pt-langnav" aria-label={lang === 'en' ? 'Language' : 'Idioma'}>
+      {lang === 'es' ? <span aria-current="true">ES</span> : <a href={altPath(path, 'en')} hreflang="es" lang="es">ES</a>}
+      <span aria-hidden="true">|</span>
+      {lang === 'en' ? <span aria-current="true">EN</span> : <a href={altPath(path, 'es')} hreflang="en" lang="en">EN</a>}
+    </nav>
   </header>
   <main class="pt">
     <slot />

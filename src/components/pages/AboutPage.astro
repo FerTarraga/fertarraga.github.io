@@ -1,0 +1,59 @@
+---
+// Sobre mí de Fernanda en español o inglés.
+import Base from '../../layouts/Base.astro';
+import SocialLinks from '../SocialLinks.astro';
+import { c, md } from '../../lib/content';
+import { getGallery } from '../../lib/portal-data';
+
+interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
+const en = lang === 'en';
+const L = (es: string, enText: string) => (en ? enText : es);
+
+const t = (k: string) => c('sobre-mi', k, lang);
+const [pageTitle, subtitle, sample, contactButton] = await Promise.all(['page_title', 'subtitle', 'sample', 'contact_button'].map(t));
+const bio = await Promise.all([1, 2, 3, 4].map((n) => t(`bio_p${n}`)));
+const gallery = await getGallery(lang);
+const mosaic = [1, 2, 3].map((n) => gallery.get(`mosaico-${n}`)!);
+const trail = Array.from({ length: 10 }, (_, i) => gallery.get(`trayectoria-${i + 1}`)!);
+---
+<Base
+  title={L('Sobre mí | Fernanda Tárraga', 'About | Fernanda Tárraga')}
+  description={L('Trayectoria de Fernanda Tárraga como analista funcional de sistemas y analista de datos.', 'Background of Fernanda Tárraga as a functional systems analyst and data analyst.')}
+  current="sobre"
+  lang={lang}
+>
+  <h1 class="pt-page-title">{pageTitle}</h1>
+
+  <section class="pt-about" aria-labelledby="profesion">
+    <div class="pt-about-portrait">
+      <img src="/assets/fernanda-retrato.webp" width="512" height="1024" alt={L('Fernanda Tárraga sonriendo junto a la ventana de su oficina', 'Fernanda Tárraga smiling by the window of her office')} fetchpriority="high" />
+    </div>
+    <div class="pt-about-bio">
+      <h2 id="profesion">{subtitle}</h2>
+      {bio.map((x) => <p set:html={md(x)} />)}
+      <p class="pt-sample">{sample}</p>
+      <nav class="pt-social pt-social-inline" aria-label={L('Redes sociales', 'Social networks')}><SocialLinks lang={lang} /></nav>
+      <div class="pt-about-links">
+        <a class="pt-button pt-button-cv" href={en ? '/en/contact/' : '/contacto/'}>{contactButton}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="pt-mosaic" aria-label={L('Mosaico de fotos', 'Photo mosaic')}>
+    {mosaic.map((m) => (
+      <figure>
+        {m.image_url ? <img src={m.image_url} alt={m.alt} style="object-position: 70% center" loading="lazy" /> : <div class="pt-ph">{L('Foto pendiente', 'Photo pending')}</div>}
+      </figure>
+    ))}
+  </div>
+
+  <div class="pt-trail" aria-label={L('Trayectoria', 'Background')}>
+    {trail.map((tr, i) => (
+      <figure class={i >= 8 ? 'pt-trail-wide' : undefined}>
+        <div class="pt-trail-img">{tr.image_url ? <img src={tr.image_url} alt={tr.alt} loading="lazy" /> : <div class="pt-ph">{L('Foto pendiente', 'Photo pending')}</div>}</div>
+        <figcaption>{tr.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+</Base>

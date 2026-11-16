@@ -1,22 +1,28 @@
 ---
-import { ICON_PATHS, SITE } from '../data/site';
+// Fila de redes de la plantilla personal. Se edita en el panel (Redes sociales): se puede mostrar, ocultar, ordenar y cambiar el enlace.
+// Regla: visible + enlace = icono con vínculo; visible sin enlace = marcador «pendiente»; no visible = no se muestra.
+import { SITE } from '../data/site';
 import { getSettings } from '../lib/portal-data';
+import { SOCIAL_BY_KEY } from '../data/social-icons';
 
-const { networks: urls } = await getSettings();
-const NETWORKS = (['x', 'instagram', 'linkedin', 'github'] as const).map((key) => ({
-  key,
-  label: { x: 'X', instagram: 'Instagram', linkedin: 'LinkedIn', github: 'GitHub' }[key],
-  href: urls[key] ?? '',
-}));
+interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
+const en = lang === 'en';
+const { networks } = await getSettings();
+const items = networks.filter((n) => n.show && SOCIAL_BY_KEY[n.key]);
+const hrefOf = (key: string, url: string) => (key === 'email' && url && !/^mailto:/i.test(url) ? `mailto:${url}` : url);
 ---
 <ul>
-  {NETWORKS.map((n) => (
-    <li>
-      {n.href ? (
-        <a href={n.href} aria-label={`${n.label} de ${SITE.name}`} title={n.label} rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICON_PATHS[n.key]} /></svg></a>
-      ) : (
-        <span class="pt-social-ph" role="img" aria-label={`${n.label}: perfil pendiente de confirmar`} title={`${n.label}: pendiente de confirmar`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICON_PATHS[n.key]} /></svg></span>
-      )}
-    </li>
-  ))}
+  {items.map((n) => {
+    const def = SOCIAL_BY_KEY[n.key];
+    return (
+      <li>
+        {n.url ? (
+          <a href={hrefOf(n.key, n.url)} aria-label={en ? `${def.label} of ${SITE.name}` : `${def.label} de ${SITE.name}`} title={def.label} rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={def.path} /></svg></a>
+        ) : (
+          <span class="pt-social-ph" role="img" aria-label={en ? `${def.label}: profile pending` : `${def.label}: perfil pendiente de confirmar`} title={en ? `${def.label}: pending` : `${def.label}: pendiente de confirmar`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={def.path} /></svg></span>
+        )}
+      </li>
+    );
+  })}
 </ul>

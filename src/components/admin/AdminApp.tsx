@@ -1,6 +1,7 @@
 // Módulos del administrador de Fernanda. Para sumar una pantalla de Mauricio: copiar su archivo y agregar una línea acá.
 import AdminShell, { type AdminModule } from './AdminShell';
 import AbmResource from './AbmResource';
+import SocialsEditor from './SocialsEditor';
 import BlogModule from './BlogModule';
 import { RESOURCES } from '../../data/admin-resources';
 import { SITE } from '../../data/site';
@@ -14,6 +15,7 @@ const GROUPS: Record<string, string> = {
 };
 
 const modules: AdminModule[] = [
+  { id: 'redes', group: 'Contenido del sitio', label: 'Redes sociales', render: () => <SocialsEditor siteId={SITE.id} /> },
   { id: 'blog', group: 'Publicaciones', label: 'Blog', render: () => <BlogModule /> },
   ...RESOURCES.map((r) => ({
   id: r.table,
