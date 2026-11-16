@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
+import tailwind from '@astrojs/tailwind';
 
 // Sitio estático publicado en GitHub Pages (usuario FerTarraga → https://fernanda.expertotech.com.ar/).
 export default defineConfig({
@@ -7,5 +8,6 @@ export default defineConfig({
   base: '/',
   output: 'static',
   trailingSlash: 'always',
-  integrations: [preact()],
+  // Tailwind solo se aplica donde se importa `tailwind-admin.css` (el panel); no inyecta estilos base en el sitio.
+  integrations: [preact(), tailwind({ applyBaseStyles: false })],
 });

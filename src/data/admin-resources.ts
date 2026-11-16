@@ -6,21 +6,6 @@ const LANGS = ['es', 'en'];
 
 export const RESOURCES: Resource[] = [
   {
-    table: 'blogs', label: 'Blog', orderBy: { column: 'pub_date', ascending: false },
-    listColumns: ['title', 'pub_date', 'draft'], defaults: { draft: true, author: 'Fernanda Tárraga' },
-    fields: [
-      { name: 'title', label: 'Título', type: 'text', required: true },
-      { name: 'slug', label: 'Dirección (slug)', type: 'text', required: true, help: 'Solo minúsculas, números y guiones.' },
-      { name: 'pub_date', label: 'Fecha', type: 'date' },
-      { name: 'author', label: 'Autora', type: 'text' },
-      { name: 'categories', label: 'Categorías', type: 'tags', help: 'Separadas por coma.' },
-      { name: 'description', label: 'Resumen', type: 'textarea' },
-      { name: 'body_markdown', label: 'Contenido (Markdown)', type: 'markdown' },
-      { name: 'cover_url', label: 'Portada', type: 'image', bucket: 'blog-images' },
-      { name: 'draft', label: 'Borrador (no se publica)', type: 'checkbox' },
-    ],
-  },
-  {
     table: 'site_content', label: 'Textos', orderBy: { column: 'page' },
     listColumns: ['page', 'key', 'lang', 'value'], defaults: { lang: 'es' },
     fields: [

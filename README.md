@@ -29,3 +29,6 @@ Los repos son independientes, pero estos archivos deben mantenerse **iguales** e
 - Lectores con valores por defecto: `content.ts` (textos) y `portal-data.ts` (galería, menú, ajustes; proyectos en Mauricio).
 
 Cada sitio define sus módulos del panel en `src/components/admin/AdminApp.tsx` y sus recursos editables en `src/data/admin-resources.ts`.
+
+## Panel con Tailwind
+El panel de administración usa clases de Tailwind (sin preflight), cargadas solo en `/admin/` mediante `src/styles/tailwind-admin.css`. El resto del sitio no recibe esos estilos.
