@@ -3,6 +3,7 @@ import AdminShell, { type AdminModule } from './AdminShell';
 import AbmResource from './AbmResource';
 import SocialsEditor from './SocialsEditor';
 import BlogModule from './BlogModule';
+import CasesModule from './CasesModule';
 import { RESOURCES } from '../../data/admin-resources';
 import { SITE } from '../../data/site';
 
@@ -17,6 +18,7 @@ const GROUPS: Record<string, string> = {
 const modules: AdminModule[] = [
   { id: 'redes', group: 'Contenido del sitio', label: 'Redes sociales', render: () => <SocialsEditor siteId={SITE.id} /> },
   { id: 'blog', group: 'Publicaciones', label: 'Blog', render: () => <BlogModule /> },
+  { id: 'casos', group: 'Publicaciones', label: 'Casos de estudio', render: () => <CasesModule /> },
   ...RESOURCES.map((r) => ({
   id: r.table,
   group: GROUPS[r.table] ?? 'Contenido del sitio',

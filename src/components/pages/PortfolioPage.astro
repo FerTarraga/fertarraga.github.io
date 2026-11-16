@@ -2,6 +2,8 @@
 // Portafolio de Fernanda en español o inglés. Los proyectos de la lista salen de la base; los casos largos están en la página.
 import Base from '../../layouts/Base.astro';
 import { getProjects } from '../../lib/portal-data';
+import { getCases } from '../../lib/cases';
+import CaseModal from '../CaseModal.astro';
 
 interface Props { lang?: 'es' | 'en' }
 const { lang = 'es' } = Astro.props;
@@ -9,6 +11,8 @@ const en = lang === 'en';
 const L = (es: string, enText: string) => (en ? enText : es);
 
 const projects = await getProjects(lang);
+const cases = await getCases(lang);
+const caseSlugs = new Set(cases.map((c) => c.slug));
 const groups = [...new Set(projects.map((p) => p.category))].map((category) => ({ category, items: projects.filter((p) => p.category === category) }));
 const contactHref = en ? '/en/contact/' : '/contacto/';
 ---
@@ -20,13 +24,13 @@ const contactHref = en ? '/en/contact/' : '/contacto/';
 >
   <h1 class="pt-page-title">{L('Portafolio', 'Portfolio')}</h1>
   <div class="pt-folio" id="proyectos">
-    <p>{L('Casos de trabajo con datos y sistemas. Cada proyecto explica el problema, lo que se hizo y el resultado.', 'Work cases with data and systems. Each project explains the problem, what was done and the result.')}</p>
+    <p>{L('Casos de trabajo con datos y sistemas. Hacé clic en un proyecto para ver el problema, lo que se hizo y el resultado.', 'Work cases with data and systems. Click a project to see the problem, what was done and the result.')}</p>
     {groups.map((g) => (
       <section>
         <p class="pt-folio-group"><strong>{g.category}</strong></p>
         <ul>
           {g.items.map((p) => (
-            <li><a class="pt-link-gold" href={`#${p.slug}`}>{p.title}</a>{p.summary ? ` · ${p.summary}` : ''}</li>
+            <li>{caseSlugs.has(p.slug) ? <a class="pt-link-gold" href={`?caso=${p.slug}`} data-pt-case={p.slug} aria-haspopup="dialog">{p.title}</a> : <strong>{p.title}</strong>}{p.summary ? ` · ${p.summary}` : ''}</li>
           ))}
         </ul>
       </section>
@@ -34,26 +38,7 @@ const contactHref = en ? '/en/contact/' : '/contacto/';
     <blockquote class="pt-quote"><p>{L('Para saber si un dato sirve, primero hay que entender qué decisión depende de él.', 'To know whether data is useful, you first need to understand which decision depends on it.')}</p></blockquote>
     <div class="pt-folio-shot"><div class="pt-ph">{L('Imagen de proyecto pendiente', 'Project image pending')}</div></div>
 
-    <section id="interaxios" aria-labelledby="t-interaxios">
-      <h2 id="t-interaxios">{L('Interaxios · Calidad de datos en seguros', 'Interaxios · Data quality in insurance')}</h2>
-      <p class="pt-folio-meta">{L('Analista de Datos | Data Quality Analyst · 2024-2025', 'Data Analyst | Data Quality Analyst · 2024-2025')}</p>
-      <p><strong>{L('El problema.', 'The problem.')}</strong> {L('La incorporación de fechas provocaba demoras recurrentes.', 'Loading dates caused recurring delays.')}</p>
-      <p><strong>{L('La intervención.', 'The intervention.')}</strong> {L('Validé las reglas de fechas con el negocio, normalicé por lotes los datos inconsistentes y trabajé con triggers de seguimiento. Herramientas: SQL, Python, Databricks, Snowflake y consulta de reportes existentes en Power BI.', 'I validated the date rules with the business, normalized inconsistent data in batches and worked with tracking triggers. Tools: SQL, Python, Databricks, Snowflake and querying existing Power BI reports.')}</p>
-      <p><strong>{L('El resultado.', 'The result.')}</strong> {L('La corrección resolvió las demoras asociadas a ese problema.', 'The fix resolved the delays associated with that problem.')}</p>
-    </section>
-    <section id="gm-nails" aria-labelledby="t-gm">
-      <h2 id="t-gm">{L('GM Nails · Sistema de turnos', 'GM Nails · Appointment system')}</h2>
-      <p set:html={L('Desarrollé una <strong>web app de calendario y gestión de turnos</strong> para un negocio de manicura y cosmetología.', 'I built a <strong>web app with a calendar and appointment management</strong> for a manicure and cosmetology business.')} />
-      <div class="pt-folio-shot"><div class="pt-ph">{L('Captura del calendario pendiente', 'Calendar screenshot pending')}</div></div>
-    </section>
-    <section id="chequeos" aria-labelledby="t-chequeos">
-      <h2 id="t-chequeos">{L('Tres chequeos antes de analizar datos', 'Three checks before analyzing data')}</h2>
-      <ul>
-        <li>{L('Definí qué identifica a cada registro y buscá duplicados.', 'Define what identifies each record and look for duplicates.')}</li>
-        <li>{L('Revisá si faltan campos que necesita el proceso.', 'Check whether fields the process needs are missing.')}</li>
-        <li>{L('Contrastá los valores con las reglas del negocio.', 'Compare the values against the business rules.')}</li>
-      </ul>
-    </section>
     <p class="pt-folio-end"><a class="pt-link-gold" href={contactHref}>{L('Contáctame', 'Contact me')}</a></p>
   </div>
+  <CaseModal cases={cases} lang={lang} />
 </Base>
