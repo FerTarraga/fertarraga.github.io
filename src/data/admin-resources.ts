@@ -17,6 +17,8 @@ export const RESOURCES: Resource[] = [
       { name: 'description', label: 'Descripción', type: 'textarea' },
       { name: 'gallery_urls', label: 'Fotos del evento', type: 'images', bucket: 'blog-images', help: 'Se suben una sola vez y se usan en Eventos, Sobre mí e Inicio.' },
       { name: 'main_photo', label: 'Foto principal (opcional)', type: 'image', bucket: 'blog-images' },
+      { name: 'certificate_url', label: 'Certificado (opcional)', type: 'image', bucket: 'blog-images', help: 'Si el evento no tiene fotos, la tarjeta muestra el certificado.' },
+      { name: 'slides_urls', label: 'Diapositivas (opcional)', type: 'images', bucket: 'blog-images', help: 'No se usan en Sobre mí ni en el Inicio.' },
       { name: 'show_in_about', label: 'Aparece en Sobre mí', type: 'checkbox' },
       { name: 'featured_home', label: 'Foto del Inicio', type: 'checkbox' },
       { name: 'draft', label: 'Borrador (no se publica)', type: 'checkbox' },
