@@ -11,4 +11,23 @@ export const db = createClient(supabaseUrl, supabaseAnonKey, {
   auth: { persistSession: inBrowser, autoRefreshToken: inBrowser, detectSessionInUrl: false },
 });
 
-export const SESSION_DURATION_MS = 2 * 60 * 60 * 1000;
+import { sessionExpired, clearSessionStart } from './session';
+
+export {
+  SESSION_DURATION_MS,
+  markSessionStart,
+  clearSessionStart,
+  sessionExpired,
+  scheduleSessionEnd,
+  resolveLoginUser,
+} from './session';
+
+/** Cierra la sesión de Supabase si pasó el tiempo máximo de sesión del panel. */
+export async function enforceSessionExpiry() {
+  if (sessionExpired()) {
+    await db.auth.signOut();
+    clearSessionStart();
+    return true;
+  }
+  return false;
+}

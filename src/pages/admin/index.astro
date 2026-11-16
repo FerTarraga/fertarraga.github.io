@@ -1,13 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import AbmPanel from '../../components/admin/AbmPanel';
-import { RESOURCES } from '../../data/admin-resources';
-import { SITE } from '../../data/site';
+import AdminApp from '../../components/admin/AdminApp';
 import '../../styles/admin.css';
 ---
 <Base title="Panel | Fernanda Tárraga" noindex>
   <h1 class="pt-page-title">Panel de administración</h1>
-  <div class="pt-folio">
-    <AbmPanel client:load siteId={SITE.id} siteName={SITE.name} resources={RESOURCES} />
+  <div class="pt-admin-page">
+    <AdminApp client:load />
   </div>
 </Base>
