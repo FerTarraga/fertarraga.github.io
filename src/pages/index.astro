@@ -1,10 +1,12 @@
 ---
-import { t } from '../lib/content';
+import { c, md } from '../lib/content';
 import Base from '../layouts/Base.astro';
-import SocialLinks from '../components/SocialLinks.astro';const bannerTitle = await t('home', 'banner_title', 'Entender el proceso ayuda a mejorar sus datos.');
-const bannerButton = await t('home', 'banner_button', 'Conocé mi trayectoria');
-const introTitle = await t('home', 'intro_title', 'Entre los datos y el negocio');
-const quote = await t('home', 'quote', 'Para saber si un dato sirve, primero hay que entender qué decisión depende de él.');
+import SocialLinks from '../components/SocialLinks.astro';
+const bannerTitle = await c('home', 'banner_title');
+const bannerButton = await c('home', 'banner_button');
+const introTitle = await c('home', 'intro_title');
+const intro = await Promise.all([1, 2, 3, 4].map((n) => c('home', `intro_p${n}`)));
+const quote = await c('home', 'quote');
 ---
 <Base title="Fernanda Tárraga | Analista Funcional de Sistemas | Data Analyst" description="Fernanda Tárraga, analista funcional de sistemas y analista de datos: calidad de datos, análisis funcional y desarrollo web." current="inicio" form>
     <section class="pt-banner" aria-label="Presentación">
@@ -21,10 +23,7 @@ const quote = await t('home', 'quote', 'Para saber si un dato sirve, primero hay
       <div class="pt-intro-inner">
         <div>
           <h2 id="introduccion">{introTitle}</h2>
-          <p>Soy <strong>analista funcional de sistemas</strong> y <strong>analista de datos</strong>. Mi experiencia en el sector asegurador me llevó a trabajar con la información de <strong>pólizas y facturación</strong>.</p>
-          <p>En <strong>Interaxios</strong> fui <strong>Analista de Datos | Data Quality Analyst</strong> (2024-2025). Revisaba la calidad de esos registros con <strong>SQL, Python, Databricks y Snowflake</strong> y consultaba reportes existentes en <strong>Power BI</strong>.</p>
-          <p>Me interesa el cruce entre el dato y el proceso: entender qué produce un dato, qué decisión depende de él y cómo detectar a tiempo una inconsistencia.</p>
-          <p>También desarrollé <strong>GM Nails</strong>, una web app de calendario y gestión de turnos para un negocio de manicura y cosmetología. Me formé en <strong>Desarrollo Web (Codo a Codo 4.0)</strong> y en un curso a distancia de <strong>Scrum Master (UTN)</strong>.</p>
+          {intro.map((p) => <p set:html={md(p)} />)}
           <p><a class="pt-link-gold" href="/sobre-mi/">Conocé mi trayectoria</a></p>
         </div>
         <div class="pt-intro-photo">

@@ -1,0 +1,80 @@
+[
+  {
+    "slot": "mosaico-1",
+    "image_url": "/assets/fernanda-portada.webp",
+    "alt": "Fernanda Tárraga con blazer azul sentada junto a un cuaderno",
+    "caption": ""
+  },
+  {
+    "slot": "mosaico-2",
+    "image_url": "",
+    "alt": "",
+    "caption": ""
+  },
+  {
+    "slot": "mosaico-3",
+    "image_url": "",
+    "alt": "",
+    "caption": ""
+  },
+  {
+    "slot": "trayectoria-1",
+    "image_url": "",
+    "alt": "",
+    "caption": "Analista de Datos | Data Quality Analyst · Interaxios · 2024-2025"
+  },
+  {
+    "slot": "trayectoria-2",
+    "image_url": "",
+    "alt": "",
+    "caption": "Desarrollo Web · Codo a Codo 4.0 · fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-3",
+    "image_url": "",
+    "alt": "",
+    "caption": "Curso de Scrum Master a distancia · UTN · fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-4",
+    "image_url": "",
+    "alt": "",
+    "caption": "Web app de calendario y turnos · GM Nails · fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-5",
+    "image_url": "",
+    "alt": "",
+    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-6",
+    "image_url": "",
+    "alt": "",
+    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-7",
+    "image_url": "",
+    "alt": "",
+    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-8",
+    "image_url": "",
+    "alt": "",
+    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-9",
+    "image_url": "",
+    "alt": "",
+    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+  },
+  {
+    "slot": "trayectoria-10",
+    "image_url": "",
+    "alt": "",
+    "caption": "Evento o taller · tema, institución y fecha por confirmar"
+  }
+]

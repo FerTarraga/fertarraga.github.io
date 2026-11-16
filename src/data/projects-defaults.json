@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "interaxios",
+    "title": "Interaxios",
+    "summary": "calidad de datos de pólizas y facturación en seguros",
+    "category": "Calidad de datos",
+    "position": 1
+  },
+  {
+    "slug": "gm-nails",
+    "title": "GM Nails",
+    "summary": "web app de calendario y gestión de turnos",
+    "category": "Desarrollo web",
+    "position": 2
+  },
+  {
+    "slug": "chequeos",
+    "title": "Tres chequeos antes de analizar datos",
+    "summary": "",
+    "category": "Recursos",
+    "position": 3
+  }
+]

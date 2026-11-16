@@ -1,29 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import { getProjects } from '../lib/portal-data';
+const projects = await getProjects();
+const groups = [...new Set(projects.map((p) => p.category))].map((category) => ({ category, items: projects.filter((p) => p.category === category) }));
 ---
 <Base title="Portafolio | Fernanda Tárraga" description="Casos de Fernanda Tárraga: calidad de datos en Interaxios y la web app de turnos GM Nails." current="portafolio">
     <h1 class="pt-page-title">Portafolio</h1>
     <div class="pt-folio" id="proyectos">
       <p>Casos de trabajo con datos y sistemas. Cada proyecto explica el problema, lo que se hizo y el resultado.</p>
-      <section>
-        <p class="pt-folio-group"><strong>Calidad de datos</strong></p>
-        <ul>
-          <li><a class="pt-link-gold" href="#interaxios">Interaxios</a> · calidad de datos de pólizas y facturación en seguros</li>
-        </ul>
-      </section>
-      <section>
-        <p class="pt-folio-group"><strong>Desarrollo web</strong></p>
-        <ul>
-          <li><a class="pt-link-gold" href="#gm-nails">GM Nails</a> · web app de calendario y gestión de turnos</li>
-        </ul>
-      </section>
-      <section>
-        <p class="pt-folio-group"><strong>Recursos</strong></p>
-        <ul>
-          <li><a class="pt-link-gold" href="#chequeos">Tres chequeos antes de analizar datos</a></li>
-        </ul>
-      </section>
+      {groups.map((g) => (
+        <section>
+          <p class="pt-folio-group"><strong>{g.category}</strong></p>
+          <ul>
+            {g.items.map((p) => (
+              <li><a class="pt-link-gold" href={`#${p.slug}`}>{p.title}</a>{p.summary ? ` · ${p.summary}` : ''}</li>
+            ))}
+          </ul>
+        </section>
+      ))}
       <blockquote class="pt-quote"><p>Para saber si un dato sirve, primero hay que entender qué decisión depende de él.</p></blockquote>
       <div class="pt-folio-shot"><div class="pt-ph">Imagen de proyecto pendiente</div></div>
 
