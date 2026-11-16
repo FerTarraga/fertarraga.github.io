@@ -4,7 +4,7 @@ export const SITE = {
   id: 'fernanda',
   name: 'Fernanda Tárraga',
   tagline: 'Analista Funcional de Sistemas | Data Analyst',
-  url: 'https://fertarraga.github.io/',
+  url: 'https://fernanda.expertotech.com.ar/',
   linkedin: 'https://www.linkedin.com/in/iristarraga/',
   year: new Date().getFullYear(),
 } as const;
