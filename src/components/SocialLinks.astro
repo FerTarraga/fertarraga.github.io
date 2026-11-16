@@ -1,5 +1,13 @@
 ---
-import { NETWORKS, ICON_PATHS, SITE } from '../data/site';
+import { ICON_PATHS, SITE } from '../data/site';
+import { getSettings } from '../lib/portal-data';
+
+const { networks: urls } = await getSettings();
+const NETWORKS = (['x', 'instagram', 'linkedin', 'github'] as const).map((key) => ({
+  key,
+  label: { x: 'X', instagram: 'Instagram', linkedin: 'LinkedIn', github: 'GitHub' }[key],
+  href: urls[key] ?? '',
+}));
 ---
 <ul>
   {NETWORKS.map((n) => (

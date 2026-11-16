@@ -3,6 +3,8 @@
 import { db } from './db';
 import { SITE_ID } from '../data/site-id';
 import galleryDefaults from '../data/gallery-defaults.json';
+import navDefaults from '../data/nav-defaults.json';
+import settingsDefaults from '../data/settings-defaults.json';
 import projectsDefaults from '../data/projects-defaults.json';
 
 export interface GalleryItem { slot: string; image_url: string; alt: string; caption: string }
@@ -36,4 +38,39 @@ export async function getProjects(lang = 'es'): Promise<Project[]> {
     console.warn('No se pudo cargar projects; se usan los valores por defecto:', (e as Error).message ?? e);
   }
   return projectsDefaults as Project[];
+}
+
+export interface NavLink { label: string; href: string }
+export interface SiteSettings { tagline: string; networks: Record<string, string> }
+
+let navCache: Promise<NavLink[]> | null = null;
+export function getNavItems(): Promise<NavLink[]> {
+  navCache ??= (async () => {
+    try {
+      const { data, error } = await db.from('nav_items').select('label, href').eq('site', SITE_ID).eq('area', 'menu').eq('visible', true).order('position', { ascending: true });
+      if (error) throw error;
+      if (data && data.length) return data as NavLink[];
+    } catch (e) {
+      console.warn('No se pudo cargar nav_items; se usa el menú por defecto:', (e as Error).message ?? e);
+    }
+    return navDefaults as NavLink[];
+  })();
+  return navCache;
+}
+
+let settingsCache: Promise<SiteSettings> | null = null;
+export function getSettings(): Promise<SiteSettings> {
+  settingsCache ??= (async () => {
+    const base = settingsDefaults as SiteSettings;
+    try {
+      const { data, error } = await db.from('site_settings').select('data').eq('site', SITE_ID).maybeSingle();
+      if (error) throw error;
+      const d = (data?.data ?? {}) as Partial<SiteSettings>;
+      return { tagline: d.tagline || base.tagline, networks: { ...base.networks, ...(d.networks ?? {}) } };
+    } catch (e) {
+      console.warn('No se pudo cargar site_settings; se usan los ajustes por defecto:', (e as Error).message ?? e);
+      return base;
+    }
+  })();
+  return settingsCache;
 }
