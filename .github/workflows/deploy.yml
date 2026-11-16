@@ -10,6 +10,11 @@ on:
   schedule:
     - cron: '0 */12 * * *'  # reconstruye cada 12 horas por si hubo cambios sin aviso
 
+# Varias ediciones seguidas se juntan: queda una corrida en espera con el contenido más reciente.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 permissions:
   contents: read
   pages: write
