@@ -5,5 +5,9 @@
     "instagram": "",
     "linkedin": "https://www.linkedin.com/in/iristarraga/",
     "github": ""
+  },
+  "sections": {
+    "eventos": true,
+    "recursos": false
   }
 }

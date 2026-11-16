@@ -7,6 +7,7 @@ import { SITE } from '../../data/site';
 
 const GROUPS: Record<string, string> = {
   blogs: 'Publicaciones',
+  disertaciones: 'Publicaciones',
   site_content: 'Contenido del sitio', gallery_items: 'Contenido del sitio', projects: 'Contenido del sitio',
   skills: 'Contenido del sitio', nav_items: 'Contenido del sitio', site_settings: 'Contenido del sitio',
   cv_documents: 'Privado',

@@ -12,5 +12,7 @@
   "sobre-mi.bio_p1": "Soy **Fernanda Tárraga**, **analista funcional de sistemas** y **analista de datos**. Mi experiencia en el sector asegurador me llevó a trabajar con la información que sostiene dos operaciones del negocio: **pólizas y facturación**.",
   "sobre-mi.bio_p2": "En **Interaxios** (2024-2025, remoto) revisaba la calidad de esos registros. Detectar duplicados, datos incompletos e inconsistencias era parte del trabajo, junto con entender cómo los procesos y sistemas producían y usaban esa información. Trabajé con **SQL, Python, Databricks y Snowflake** y consulté reportes existentes en **Power BI**.",
   "sobre-mi.bio_p3": "Me formé en **Desarrollo Web en Codo a Codo 4.0** y cursé **Scrum Master** a distancia con la **UTN**. También desarrollé **GM Nails**, una web app de calendario y gestión de turnos para un negocio de manicura y cosmetología.",
-  "sobre-mi.bio_p4": "Me interesa ese cruce entre el dato y el proceso: entender qué necesita el negocio y cómo comprobar si la información disponible sirve para esa tarea."
+  "sobre-mi.bio_p4": "Me interesa ese cruce entre el dato y el proceso: entender qué necesita el negocio y cómo comprobar si la información disponible sirve para esa tarea.",
+  "eventos.page_title": "Eventos",
+  "eventos.intro": "Charlas, talleres y otras participaciones, con su material."
 }

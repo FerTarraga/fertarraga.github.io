@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import EventosList from '../components/EventosList.astro';
+import { getEventos } from '../lib/eventos';
+import { c } from '../lib/content';
+
+const eventos = await getEventos();
+const pageTitle = await c('eventos', 'page_title');
+const intro = await c('eventos', 'intro');
+---
+<Base title="Eventos | Fernanda Tárraga" description="Charlas, talleres y otras participaciones de Fernanda Tárraga." current="eventos">
+  <h1 class="pt-page-title">{pageTitle}</h1>
+  <div class="pt-contact-intro"><p>{intro}</p></div>
+  <EventosList eventos={eventos} />
+</Base>

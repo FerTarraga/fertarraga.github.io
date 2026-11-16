@@ -6,6 +6,23 @@ const LANGS = ['es', 'en'];
 
 export const RESOURCES: Resource[] = [
   {
+    table: 'disertaciones', label: 'Eventos', orderBy: { column: 'event_date', ascending: false },
+    listColumns: ['title', 'event_date', 'event_name', 'draft'], defaults: { draft: false, show_in_about: true, author: 'Fernanda Tárraga' },
+    fields: [
+      { name: 'title', label: 'Nombre del evento', type: 'text', required: true },
+      { name: 'slug', label: 'Dirección (slug)', type: 'text', required: true, help: 'Solo minúsculas, números y guiones.' },
+      { name: 'event_date', label: 'Fecha', type: 'date' },
+      { name: 'event_name', label: 'Lugar o institución', type: 'text' },
+      { name: 'categories', label: 'Tipo', type: 'tags', help: 'Ej.: Participante, Charla, Taller, Hackatón, Premio. Separados por coma.' },
+      { name: 'description', label: 'Descripción', type: 'textarea' },
+      { name: 'gallery_urls', label: 'Fotos del evento', type: 'images', bucket: 'blog-images', help: 'Se suben una sola vez y se usan en Eventos, Sobre mí e Inicio.' },
+      { name: 'main_photo', label: 'Foto principal (opcional)', type: 'image', bucket: 'blog-images' },
+      { name: 'show_in_about', label: 'Aparece en Sobre mí', type: 'checkbox' },
+      { name: 'featured_home', label: 'Foto del Inicio', type: 'checkbox' },
+      { name: 'draft', label: 'Borrador (no se publica)', type: 'checkbox' },
+    ],
+  },
+  {
     table: 'site_content', label: 'Textos', orderBy: { column: 'page' },
     listColumns: ['page', 'key', 'lang', 'value'], defaults: { lang: 'es' },
     fields: [

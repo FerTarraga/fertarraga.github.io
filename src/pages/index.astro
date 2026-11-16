@@ -1,5 +1,6 @@
 ---
 import { c, md } from '../lib/content';
+import { getHomePhoto } from '../lib/eventos';
 import Base from '../layouts/Base.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 const bannerTitle = await c('home', 'banner_title');
@@ -7,6 +8,7 @@ const bannerButton = await c('home', 'banner_button');
 const introTitle = await c('home', 'intro_title');
 const intro = await Promise.all([1, 2, 3, 4].map((n) => c('home', `intro_p${n}`)));
 const quote = await c('home', 'quote');
+const homePhoto = await getHomePhoto();
 ---
 <Base title="Fernanda Tárraga | Analista Funcional de Sistemas | Data Analyst" description="Fernanda Tárraga, analista funcional de sistemas y analista de datos: calidad de datos, análisis funcional y desarrollo web." current="inicio" form>
     <section class="pt-banner" aria-label="Presentación">
@@ -34,7 +36,7 @@ const quote = await c('home', 'quote');
 
     <section class="pt-statement" aria-label="Mi enfoque">
       <blockquote class="pt-quote"><p>{quote}</p></blockquote>
-      <div class="pt-statement-photo"><div class="pt-ph">Foto de trabajo pendiente</div></div>
+      <div class="pt-statement-photo">{homePhoto ? <img src={homePhoto.url} alt={homePhoto.alt} loading="lazy" /> : <div class="pt-ph">Foto de trabajo pendiente</div>}</div>
     </section>
 
     <section class="pt-band" id="proyectos" aria-labelledby="trabajo">
