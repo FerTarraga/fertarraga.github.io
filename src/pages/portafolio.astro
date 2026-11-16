@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+---
+<Base title="Portafolio | Fernanda Tárraga" description="Casos de Fernanda Tárraga: calidad de datos en Interaxios y la web app de turnos GM Nails." current="portafolio">
+    <h1 class="pt-page-title">Portafolio</h1>
+    <div class="pt-folio" id="proyectos">
+      <p>Casos de trabajo con datos y sistemas. Cada proyecto explica el problema, lo que se hizo y el resultado.</p>
+      <section>
+        <p class="pt-folio-group"><strong>Calidad de datos</strong></p>
+        <ul>
+          <li><a class="pt-link-gold" href="#interaxios">Interaxios</a> · calidad de datos de pólizas y facturación en seguros</li>
+        </ul>
+      </section>
+      <section>
+        <p class="pt-folio-group"><strong>Desarrollo web</strong></p>
+        <ul>
+          <li><a class="pt-link-gold" href="#gm-nails">GM Nails</a> · web app de calendario y gestión de turnos</li>
+        </ul>
+      </section>
+      <section>
+        <p class="pt-folio-group"><strong>Recursos</strong></p>
+        <ul>
+          <li><a class="pt-link-gold" href="#chequeos">Tres chequeos antes de analizar datos</a></li>
+        </ul>
+      </section>
+      <blockquote class="pt-quote"><p>Para saber si un dato sirve, primero hay que entender qué decisión depende de él.</p></blockquote>
+      <div class="pt-folio-shot"><div class="pt-ph">Imagen de proyecto pendiente</div></div>
+
+      <section id="interaxios" aria-labelledby="t-interaxios">
+        <h2 id="t-interaxios">Interaxios · Calidad de datos en seguros</h2>
+        <p class="pt-folio-meta">Analista de Datos | Data Quality Analyst · 2024-2025</p>
+        <p><strong>El problema.</strong> La incorporación de fechas provocaba demoras recurrentes.</p>
+        <p><strong>La intervención.</strong> Validé las reglas de fechas con el negocio, normalicé por lotes los datos inconsistentes y trabajé con triggers de seguimiento. Herramientas: SQL, Python, Databricks, Snowflake y consulta de reportes existentes en Power BI.</p>
+        <p><strong>El resultado.</strong> La corrección resolvió las demoras asociadas a ese problema.</p>
+      </section>
+      <section id="gm-nails" aria-labelledby="t-gm">
+        <h2 id="t-gm">GM Nails · Sistema de turnos</h2>
+        <p>Desarrollé una <strong>web app de calendario y gestión de turnos</strong> para un negocio de manicura y cosmetología.</p>
+        <div class="pt-folio-shot"><div class="pt-ph">Captura del calendario pendiente</div></div>
+      </section>
+      <section id="chequeos" aria-labelledby="t-chequeos">
+        <h2 id="t-chequeos">Tres chequeos antes de analizar datos</h2>
+        <ul>
+          <li>Definí qué identifica a cada registro y buscá duplicados.</li>
+          <li>Revisá si faltan campos que necesita el proceso.</li>
+          <li>Contrastá los valores con las reglas del negocio.</li>
+        </ul>
+      </section>
+      <p class="pt-folio-end"><a class="pt-link-gold" href="/contacto/">Contáctame</a></p>
+    </div>
+</Base>

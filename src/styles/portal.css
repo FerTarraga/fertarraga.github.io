@@ -1,0 +1,5 @@
+/* Base del portal de Fernanda Tárraga. La plantilla común está en personal-profile.css. */
+.pt-body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: #fff; }
+.pt-body > main { flex: 1; }
+.pt-body img { height: auto; }
+.pt-banner-photo img, .pt-intro-photo img, .pt-about-portrait img, .pt-mosaic img, .pt-contact-photo img, .pt-trail img { height: 100%; }

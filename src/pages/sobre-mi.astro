@@ -1,0 +1,76 @@
+---
+import { t } from '../lib/content';
+import Base from '../layouts/Base.astro';
+import SocialLinks from '../components/SocialLinks.astro';const pageTitle = await t('sobre-mi', 'page_title', 'Del dato al proceso');
+const subtitle = await t('sobre-mi', 'subtitle', 'Analista funcional de sistemas y analista de datos, con foco en calidad de datos');
+---
+<Base title="Sobre mí | Fernanda Tárraga" description="Trayectoria de Fernanda Tárraga como analista funcional de sistemas y analista de datos." current="sobre">
+    <h1 class="pt-page-title">{pageTitle}</h1>
+
+    <section class="pt-about" aria-labelledby="profesion">
+      <div class="pt-about-portrait">
+        <img src="/assets/fernanda-retrato.webp" width="512" height="1024" alt="Fernanda Tárraga sonriendo junto a la ventana de su oficina" fetchpriority="high">
+      </div>
+      <div class="pt-about-bio">
+        <h2 id="profesion">{subtitle}</h2>
+        <p>Soy <strong>Fernanda Tárraga</strong>, <strong>analista funcional de sistemas</strong> y <strong>analista de datos</strong>. Mi experiencia en el sector asegurador me llevó a trabajar con la información que sostiene dos operaciones del negocio: <strong>pólizas y facturación</strong>.</p>
+        <p>En <strong>Interaxios</strong> (2024-2025) revisaba la calidad de esos registros. Detectar duplicados, datos incompletos e inconsistencias era parte del trabajo, junto con entender cómo los procesos y sistemas producían y usaban esa información. Trabajé con <strong>SQL, Python, Databricks y Snowflake</strong> y consulté reportes existentes en <strong>Power BI</strong>.</p>
+        <p>Me formé en <strong>Desarrollo Web en Codo a Codo 4.0</strong> y cursé <strong>Scrum Master</strong> a distancia con la <strong>UTN</strong>. También desarrollé <strong>GM Nails</strong>, una web app de calendario y gestión de turnos para un negocio de manicura y cosmetología.</p>
+        <p>Me interesa ese cruce entre el dato y el proceso: entender qué necesita el negocio y cómo comprobar si la información disponible sirve para esa tarea.</p>
+        <p class="pt-sample">[Texto de muestra, pendiente de confirmar por Fernanda] Espacio reservado para ampliar la biografía: intereses, forma de trabajo y objetivos profesionales.</p>
+        <nav class="pt-social pt-social-inline" aria-label="Redes sociales"><SocialLinks /></nav>
+        <div class="pt-about-links">
+          <a class="pt-button pt-button-cv" href="/contacto/">Contáctame</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="pt-mosaic" aria-label="Mosaico de fotos">
+      <figure><img src="/assets/fernanda-portada.webp" width="1440" height="960" alt="Fernanda Tárraga con blazer azul sentada junto a un cuaderno" style="object-position: 70% center" loading="lazy"></figure>
+      <figure><div class="pt-ph">Foto pendiente</div></figure>
+      <figure><div class="pt-ph">Foto pendiente</div></figure>
+    </div>
+
+    <div class="pt-trail" aria-label="Trayectoria">
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Analista de Datos | Data Quality Analyst · Interaxios · 2024-2025</figcaption>
+      </figure>
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Desarrollo Web · Codo a Codo 4.0 · fecha por confirmar</figcaption>
+      </figure>
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Curso de Scrum Master a distancia · UTN · fecha por confirmar</figcaption>
+      </figure>
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Web app de calendario y turnos · GM Nails · fecha por confirmar</figcaption>
+      </figure>
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Evento o taller · tema, institución y fecha por confirmar</figcaption>
+      </figure>
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Evento o taller · tema, institución y fecha por confirmar</figcaption>
+      </figure>
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Evento o taller · tema, institución y fecha por confirmar</figcaption>
+      </figure>
+      <figure>
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Evento o taller · tema, institución y fecha por confirmar</figcaption>
+      </figure>
+      <figure class="pt-trail-wide">
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Evento o taller · tema, institución y fecha por confirmar</figcaption>
+      </figure>
+      <figure class="pt-trail-wide">
+        <div class="pt-trail-img"><div class="pt-ph">Foto pendiente</div></div>
+        <figcaption>Evento o taller · tema, institución y fecha por confirmar</figcaption>
+      </figure>
+    </div>
+</Base>

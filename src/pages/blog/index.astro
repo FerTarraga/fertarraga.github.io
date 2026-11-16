@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts, formatDate } from '../../lib/blog';
+const posts = await getPosts();
+---
+<Base title="Blog | Fernanda Tárraga" description="Artículos de Fernanda Tárraga sobre datos, análisis funcional y desarrollo web." current="blog">
+  <h1 class="pt-page-title">Blog</h1>
+  <div class="pt-folio pt-posts">
+    {posts.length === 0 ? (
+      <p class="pt-sample">Todavía no hay artículos publicados. Los nuevos aparecen acá apenas se publican desde el panel.</p>
+    ) : (
+      <ul>
+        {posts.map((p) => (
+          <li class="pt-post">
+            <h2><a href={`/blog/${p.slug}/`}>{p.title}</a></h2>
+            <p class="pt-folio-meta">{formatDate(p.pubDate)}{p.categories.length ? ` · ${p.categories.join(' · ')}` : ''}</p>
+            {p.description && <p>{p.description}</p>}
+            <p><a class="pt-link-gold" href={`/blog/${p.slug}/`}>Leer más</a></p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</Base>

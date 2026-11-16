@@ -1,0 +1,21 @@
+---
+import { marked } from 'marked';
+import Base from '../../layouts/Base.astro';
+import { getPosts, formatDate } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+const html = marked.parse(post.body, { async: false }) as string;
+---
+<Base title={`${post.title} | Fernanda Tárraga`} description={post.description} current="blog">
+  <h1 class="pt-page-title">{post.title}</h1>
+  <article class="pt-folio pt-article">
+    <p class="pt-folio-meta">{formatDate(post.pubDate)} · {post.author}</p>
+    {post.coverUrl && <div class="pt-folio-shot"><img src={post.coverUrl} alt="" loading="lazy" /></div>}
+    <div class="pt-prose" set:html={html} />
+    <p class="pt-folio-end"><a class="pt-link-gold" href="/blog/">Volver al blog</a></p>
+  </article>
+</Base>

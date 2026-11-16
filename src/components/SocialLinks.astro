@@ -1,0 +1,14 @@
+---
+import { NETWORKS, ICON_PATHS, SITE } from '../data/site';
+---
+<ul>
+  {NETWORKS.map((n) => (
+    <li>
+      {n.href ? (
+        <a href={n.href} aria-label={`${n.label} de ${SITE.name}`} title={n.label} rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICON_PATHS[n.key]} /></svg></a>
+      ) : (
+        <span class="pt-social-ph" role="img" aria-label={`${n.label}: perfil pendiente de confirmar`} title={`${n.label}: pendiente de confirmar`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICON_PATHS[n.key]} /></svg></span>
+      )}
+    </li>
+  ))}
+</ul>

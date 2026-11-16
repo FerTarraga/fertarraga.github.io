@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+---
+<Base title="Contáctame | Fernanda Tárraga" description="Contacto de Fernanda Tárraga." current="contacto" form>
+    <h1 class="pt-page-title">¡Hablemos!</h1>
+    <div class="pt-contact-intro">
+      <p>Escribime si querés conversar sobre análisis funcional, calidad de datos o desarrollo web. <span data-no-endpoint>El canal confirmado hoy es LinkedIn: al enviar, el mensaje se copia para que lo pegues en mi perfil.</span></p>
+    </div>
+    <div class="pt-contact">
+      <div class="pt-contact-photo">
+        <img src="/assets/fernanda-portada.webp" width="1440" height="960" alt="Fernanda Tárraga con blazer azul" style="object-position: 72% center" loading="lazy">
+      </div>
+      <div>
+        <h2>Prepará tu mensaje:</h2>
+        <!-- Envío directo: completar formspreeEndpoint y recaptchaSiteKey en assets/site-config.js (destino propio de Fernanda; no usar el de Mauricio). -->
+<div class="pt-form-wrap">
+  <form class="pt-form" data-pt-form id="contacto" novalidate>
+    <div class="pt-field">
+      <label for="contacto-name">Nombre<span class="pt-req">(obligatorio)</span></label>
+      <input id="contacto-name" name="name" type="text" autocomplete="name" required aria-describedby="contacto-name-err">
+      <div class="pt-error" id="contacto-name-err" role="alert"></div>
+    </div>
+    <div class="pt-field">
+      <label for="contacto-email">Correo electrónico<span class="pt-req">(obligatorio)</span></label>
+      <input id="contacto-email" name="email" type="email" autocomplete="email" required aria-describedby="contacto-email-err">
+      <div class="pt-error" id="contacto-email-err" role="alert"></div>
+    </div>
+    <div class="pt-field">
+      <label for="contacto-subject">Asunto<span class="pt-req">(obligatorio)</span></label>
+      <input id="contacto-subject" name="subject" type="text" autocomplete="off" required aria-describedby="contacto-subject-err">
+      <div class="pt-error" id="contacto-subject-err" role="alert"></div>
+    </div>
+    <div class="pt-field">
+      <label for="contacto-message">Mensaje<span class="pt-req">(obligatorio)</span></label>
+      <textarea id="contacto-message" name="message" required aria-describedby="contacto-message-err"></textarea>
+      <div class="pt-error" id="contacto-message-err" role="alert"></div>
+    </div>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    <div class="pt-field pt-form-output" id="contacto-output" hidden>
+      <label for="contacto-copy">Mensaje listo para copiar</label>
+      <textarea id="contacto-copy" readonly></textarea>
+    </div>
+    <div class="pt-field pt-captcha-field" hidden>
+      <div class="pt-captcha"></div>
+      <div class="pt-error" data-captcha-err role="alert"></div>
+    </div>
+    <div class="pt-form-actions">
+      <button class="pt-button" type="submit">Enviar</button>
+      <p class="pt-form-status" role="status"></p>
+    </div>
+  </form>
+</div>
+        <p class="pt-contact-side">Después de copiar el mensaje, pegalo en <a class="pt-link-gold" href="https://www.linkedin.com/in/iristarraga/" rel="noopener">LinkedIn</a>.</p>
+        <nav class="pt-social pt-social-inline" aria-label="Redes sociales"><SocialLinks /></nav>
+      </div>
+    </div>
+</Base>
