@@ -2,23 +2,92 @@
 import Base from '../../layouts/Base.astro';
 import { getPosts, formatDate } from '../../lib/blog';
 const posts = await getPosts();
+const categories = Array.from(new Set(posts.flatMap((p) => p.categories))).sort();
+const byYear = new Map<number, number>();
+for (const p of posts) byYear.set(p.pubDate.getFullYear(), (byYear.get(p.pubDate.getFullYear()) ?? 0) + 1);
+const years = [...byYear.entries()].sort((a, b) => b[0] - a[0]);
 ---
 <Base title="Blog | Fernanda Tárraga" description="Artículos de Fernanda Tárraga sobre datos, análisis funcional y desarrollo web." current="blog">
   <h1 class="pt-page-title">Blog</h1>
-  <div class="pt-folio pt-posts">
-    {posts.length === 0 ? (
-      <p class="pt-sample">Todavía no hay artículos publicados. Los nuevos aparecen acá apenas se publican desde el panel.</p>
-    ) : (
-      <ul>
-        {posts.map((p) => (
-          <li class="pt-post">
-            <h2><a href={`/blog/${p.slug}/`}>{p.title}</a></h2>
-            <p class="pt-folio-meta">{formatDate(p.pubDate)}{p.categories.length ? ` · ${p.categories.join(' · ')}` : ''}</p>
-            {p.description && <p>{p.description}</p>}
-            <p><a class="pt-link-gold" href={`/blog/${p.slug}/`}>Leer más</a></p>
-          </li>
-        ))}
-      </ul>
+  <div class:list={['pt-blog', posts.length > 0 && 'pt-blog--aside']}>
+    <div class="pt-folio pt-posts">
+      {posts.length === 0 ? (
+        <p class="pt-sample">Todavía no hay artículos publicados. Los nuevos aparecen acá apenas se publican desde el panel.</p>
+      ) : (
+        <>
+          <ul>
+            {posts.map((p) => (
+              <li
+                class="pt-post"
+                data-blog-item
+                data-text={`${p.title} ${p.description} ${p.categories.join(' ')}`.toLowerCase()}
+                data-cats={p.categories.join('|')}
+                data-year={String(p.pubDate.getFullYear())}
+              >
+                <h2><a href={`/blog/${p.slug}/`}>{p.title}</a></h2>
+                <p class="pt-folio-meta">{formatDate(p.pubDate)}{p.categories.length ? ` · ${p.categories.join(' · ')}` : ''}</p>
+                {p.description && <p>{p.description}</p>}
+                <p><a class="pt-link-gold" href={`/blog/${p.slug}/`}>Leer más</a></p>
+              </li>
+            ))}
+          </ul>
+          <p id="blog-empty" class="pt-sample" style="display:none">No hay artículos que coincidan.</p>
+        </>
+      )}
+    </div>
+    {posts.length > 0 && (
+      <aside class="pt-blog-aside" aria-label="Buscar y filtrar">
+        <details open>
+          <summary>Buscar y filtrar</summary>
+          <form role="search" onsubmit="return false">
+            <label class="pt-sr" for="blog-q">Buscar artículos</label>
+            <input id="blog-q" type="search" placeholder="Buscar artículos…" autocomplete="off" />
+          </form>
+          {categories.length > 0 && (
+            <label class="pt-blog-field">
+              <span>Etiqueta</span>
+              <select id="blog-cat">
+                <option value="">Todas</option>
+                {categories.map((c) => <option value={c}>{c}</option>)}
+              </select>
+            </label>
+          )}
+          {years.length > 0 && (
+            <div class="pt-blog-years">
+              <span>Año</span>
+              <ul>
+                {years.map(([y, n]) => <li><button type="button" data-year={y}>{y} <small>({n})</small></button></li>)}
+              </ul>
+            </div>
+          )}
+        </details>
+      </aside>
     )}
   </div>
+  <script is:inline>
+    (function () {
+      var input = document.getElementById('blog-q');
+      var sel = document.getElementById('blog-cat');
+      var items = [].slice.call(document.querySelectorAll('[data-blog-item]'));
+      var empty = document.getElementById('blog-empty');
+      var btns = [].slice.call(document.querySelectorAll('.pt-blog-years [data-year]'));
+      if (!input || !items.length) return;
+      var year = '';
+      function apply() {
+        var q = (input.value || '').toLowerCase().trim();
+        var cat = sel ? sel.value : '';
+        var shown = 0;
+        items.forEach(function (c) {
+          var ok = (!q || c.dataset.text.indexOf(q) > -1) && (!cat || c.dataset.cats.split('|').indexOf(cat) > -1) && (!year || c.dataset.year === year);
+          c.style.display = ok ? '' : 'none';
+          if (ok) shown++;
+        });
+        if (empty) empty.style.display = shown ? 'none' : '';
+        btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.year === year ? 'true' : 'false'); });
+      }
+      input.addEventListener('input', apply);
+      if (sel) sel.addEventListener('change', apply);
+      btns.forEach(function (b) { b.addEventListener('click', function () { year = year === b.dataset.year ? '' : b.dataset.year; apply(); }); });
+    })();
+  </script>
 </Base>
