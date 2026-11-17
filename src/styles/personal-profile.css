@@ -215,7 +215,8 @@
 /* ---------- Pie ---------- */
 .pt-footer { padding: 16px; text-align: center; font-family: var(--pt-head); font-size: 13.8889px; line-height: 1.7; color: var(--pt-muted); }
 .pt-footer a { color: var(--pt-muted); text-decoration: none; }
-.pt-footer .pt-footer-name { font-weight: 700; text-transform: uppercase; }
+.pt-footer .pt-footer-small { font-size: .9em; }
+.pt-footer-name { font-weight: 700; text-transform: uppercase; }
 .pt-footer a:hover { text-decoration: underline; text-underline-offset: .25em; }
 
 /* Texto de muestra: se usa cuando falta material confirmado y debe verse como provisorio. */

@@ -24,7 +24,8 @@
   ],
   "sections": {
     "eventos": true,
-    "recursos": false
+    "recursos": false,
+    "curiosidades": false
   },
   "tagline_en": "Functional Systems Analyst | Data Analyst"
 }
