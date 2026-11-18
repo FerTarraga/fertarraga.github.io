@@ -5,4 +5,3 @@ Este proyecto y `D:\Dev\_Mauglab\spa-depot` son dos portales con la misma planti
 - Nunca hacer push sin un «sí, publicar» explícito del usuario para ese cambio; publicar siempre los dos repos juntos.
 - Nunca imprimir contraseñas, tokens ni claves.
 - Backend y migraciones: `D:\Dev\_Mauglab\contabo` (no es un repo git).
-- Proyectos hermanos (no gemelos): `D:\Dev\_Mauglab\landing-velocity` (empresa) y `D:\Dev\_Mauglab\taller` (herramientas privadas). Lo de empresa o herramientas se hace allí, no en los portales. Ver `D:\Dev\_Mauglab\contabo\docs\separacion_repos.md`.

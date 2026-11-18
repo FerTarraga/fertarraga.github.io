@@ -1,9 +1,9 @@
 ---
 name: portales-gemelos
-description: Los portales de Mauricio (spa-depot) y de Fernanda (spa-depot-fer) son gemelos: misma plantilla, mismo CMS, misma base. Además existen la empresa (landing-velocity) y el taller privado (taller). Usar SIEMPRE antes de cambiar código, estilos, panel o datos en cualquiera de los repos, y antes de publicar.
+description: Los portales de Mauricio (spa-depot) y de Fernanda (spa-depot-fer) son gemelos: misma plantilla, mismo CMS, misma base. Usar SIEMPRE antes de cambiar código, estilos, panel o datos en cualquiera de los repos, y antes de publicar.
 ---
 
-# Portales gemelos (Mauricio y Fernanda) y proyectos hermanos
+# Portales gemelos (Mauricio y Fernanda)
 
 ## Regla central
 **Todo cambio de marca personal (código, estilos, panel, datos) se hace en los dos portales**, salvo que sea exclusivo de un sitio (ver «Diferencias»). Si el pedido menciona uno solo, asumir que aplica a ambos y confirmar solo si hay duda. Nunca dejar un sitio con un estilo, componente o tecnología distinta del otro («no Frankenstein»).
@@ -20,11 +20,8 @@ description: Los portales de Mauricio (spa-depot) y de Fernanda (spa-depot-fer) 
 
 Stack igual en ambos: Astro 5 (sitio estático) + Preact (panel `/admin/`) + Supabase propio (`https://api.velocitylab.com.ar`). Los datos viven en tablas con columna `site`.
 
-## Proyectos hermanos (NO son gemelos: no se replica ahí lo de los portales)
-- **`D:\Dev\_Mauglab\landing-velocity`** — sitio de la empresa (`velocitylab.com.ar`, Cloudflare, `site='velocity'`). Salió de `spa-depot`. Tiene su propia plantilla; solo comparte archivos del panel con los portales si algún día se le arma uno.
-- **`D:\Dev\_Mauglab\taller`** — herramientas privadas y extensiones de Mauricio (calculadora, nutrición, movimiento, workspace-mapper, videos, vsagenda, extensiones). Repo modular: `modulos/<x>/` con `modulo.json`; ningún módulo importa de otro. Destino: Cloudflare Pages + Cloudflare Access.
-- **`D:\Dev\_Mauglab\contabo`** — backend, migraciones y docs (NO es un repo git). Detalle de la separación en `contabo/docs/separacion_repos.md`.
-Si un pedido toca herramientas privadas o la empresa, trabajar en el repo que corresponde, no en los portales.
+## Backend
+- **`D:\Dev\_Mauglab\contabo`** — backend, migraciones y docs (NO es un repo git).
 
 ## Archivos que deben ser IDÉNTICOS entre los dos portales (salvo la ruta de los imports)
 - `src/styles/personal-profile.css`, `src/styles/admin.css`.
@@ -40,7 +37,6 @@ Al terminar, comparar los pares con `diff` (ignorando `../utils` vs `../lib`) pa
 - Zona Lab admite recursos de tipo «herramienta» (`source_type = 'herramienta'`, enlace interno): artículo + botón «Abrir herramienta».
 - Blog: Mauricio usa `BlogLayout.astro` (título + pestañas Artículos | Zona Lab + barra lateral con buscar, etiqueta y archivo); Fernanda usa `Base.astro` con `.pt-blog`. Mismo esquema visual, distinto layout.
 - Contenido, textos, colores de marca y proyectos son de cada persona.
-- Mauricio todavía conserva el build de empresa (`SITE_TARGET=company`) hasta que `landing-velocity` esté en producción; después se poda (ver `contabo/docs/separacion_repos.md`).
 
 ## Datos y backend (`D:\Dev\_Mauglab\contabo`)
 - Migraciones SQL en `supabase/migrations/` (aplicar en el servidor Contabo, alias SSH `contabo`; respaldar antes). Edge Function `blog-ai` en `supabase/functions/blog-ai/` (se despliega copiándola a `/opt/stack/supabase/volumes/functions/` y reiniciando `functions`).
@@ -49,7 +45,7 @@ Al terminar, comparar los pares con `diff` (ignorando `../utils` vs `../lib`) pa
 
 ## Flujo de trabajo
 1. Leer ambos repos antes de tocar; hacer el cambio en uno y replicarlo en el otro.
-2. Build de ambos: `npx astro build` en Fernanda; en Mauricio `SITE_TARGET=personal npx astro build` y, si se tocó algo compartido con la empresa, también `SITE_TARGET=company`.
+2. Build de ambos: `npx astro build` en cada carpeta.
 3. Probar en local sirviendo `dist` (cada build borra `dist`: reiniciar el servidor estático).
 4. Mostrar al usuario qué cambió en cada sitio y preguntar «¿publico ambos?».
 5. Solo con un sí explícito: commit y push en los dos (`master` / `main`) y revisar GitHub Actions con `gh run list`.
