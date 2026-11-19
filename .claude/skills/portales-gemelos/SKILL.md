@@ -25,7 +25,8 @@ Stack igual en ambos: Astro 5 (sitio estático) + Preact (panel `/admin/`) + Sup
 
 ## Archivos que deben ser IDÉNTICOS entre los dos portales (salvo la ruta de los imports)
 - `src/styles/personal-profile.css`, `src/styles/admin.css`.
-- Panel: `AdminShell.tsx`, `AbmResource.tsx`, `CasesModule.tsx`, `BlogModule.tsx`, `SocialsEditor.tsx`, `SectionsEditor.tsx`, `shared/WizardModal.tsx`, `shared/BusyOverlay.tsx`.
+- Panel: `AdminShell.tsx`, `AbmResource.tsx`, `CasesModule.tsx`, `BlogModule.tsx`, `SocialsEditor.tsx`, `SectionsEditor.tsx`, `ImagesModule.tsx` (sección «Imágenes»: lo que cambia entre portales llega por props desde `AdminApp.tsx`), `shared/WizardModal.tsx`, `shared/BusyOverlay.tsx`.
+- Reparto de la galería de Sobre mí: `src/data/gallery-slots.ts` (lo usan el sitio y el panel).
 - Modelo de casos: `src/data/case-model.ts`, `src/data/case-templates.ts`, `CaseModal.astro`, `CaseBlock.astro`.
 - Lectores con valores por defecto: `content.ts`, `portal-data.ts` (la interfaz `SiteSettings.sections` es igual en ambos), iconos de redes.
 Cada sitio define SUS módulos en `AdminApp.tsx`, SUS recursos en `src/data/admin-resources.ts` y SUS valores por defecto en `src/data/settings-defaults.json`.
